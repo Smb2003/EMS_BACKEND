@@ -3,7 +3,7 @@ const { DB_NAME } = require("../constant");
 
 const connect_to_database = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://${process.env.MONGODB_NAME}:${process.env.MONGODB_PASSWORD}@cluster0.6tisqfc.mongodb.net/${DB_NAME}`);
+        await mongoose.connect(`${process.env.MONGODB_CONNECTION_STRING}/${DB_NAME}`);
 
         mongoose.connection.on("on", ()=>{
             console.log("Database connected successfuly!");
