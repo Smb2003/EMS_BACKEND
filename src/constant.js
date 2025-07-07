@@ -1,0 +1,2 @@
+const DB_NAME = "EMPLOYEEMANAGEMENTSYSMENT";
+module.exports = {DB_NAME}
