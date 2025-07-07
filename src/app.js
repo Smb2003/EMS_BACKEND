@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://4bc4f03e-6724-4328-9524-a9a1108eeb02-00-2lbhj86on536i.pike.replit.dev",
+    origin: "https://ems-frontend-gamma-gray.vercel.app/",
     credentials:true
 }));
 app.use("/api/v1/users",router);
