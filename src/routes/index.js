@@ -30,7 +30,7 @@ router.route("/department_delete/:id").delete(verifyJWT,deleteDepartment);
 router.route("/employee_add").post(upload.fields([{ name: 'image', maxCount: 1 }]),verifyJWT,addEmployee);
 router.route("/employee_get").get(verifyJWT,getEmployees);
 router.route("/employee_edit/:id").put(upload.fields([{ name: 'image', maxCount: 1 }]),verifyJWT,editEmployee);
-router.route("/department_delete/:id").delete(verifyJWT,deleteEmployee);
+router.route("/employee_delete/:id").delete(verifyJWT,deleteEmployee);
 
 
 router.route("/salary_add").post(verifyJWT,addSalary);
