@@ -152,7 +152,7 @@ const editEmployee = asyncHandler(async (req,res)=>{
 
 const deleteEmployee = asyncHandler(async (req,res)=>{
     const {id} = req.params;
-
+    console.log(id);
     const findEmployee = await Employee.findById(id);
     if(!findEmployee){
         throw new ApiError(400,"No user found.");
@@ -164,6 +164,7 @@ const deleteEmployee = asyncHandler(async (req,res)=>{
     .status(200)
     .json(new ApiResponse(
         200,
+        findUser,
         "Record deleted successsfully."
     ))
 })
