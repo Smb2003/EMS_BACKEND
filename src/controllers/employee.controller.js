@@ -158,6 +158,7 @@ const deleteEmployee = asyncHandler(async (req,res)=>{
         throw new ApiError(400,"No user found.");
     }
     const findUser = await User.findByIdAndDelete(findEmployee?.userID);
+    console.log(findUser);
     await Employee.findByIdAndDelete(id);
 
     res
