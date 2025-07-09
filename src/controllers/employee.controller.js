@@ -14,9 +14,10 @@ const addEmployee = asyncHandler(async (req,res)=>{
     })){
         throw new ApiError(400,"Fill each required field.");
     }
-
+    const img = req.files;
+    console.log(img)
     const imagefile = req?.files?.image[0]?.path;
-    console.log(imagefile);
+    console.log("Image->",imagefile);
     
     if(!imagefile){
         throw new ApiError(400,"Image is required.")
