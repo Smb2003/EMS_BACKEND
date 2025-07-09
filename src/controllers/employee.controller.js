@@ -1,5 +1,6 @@
 const { Department } = require("../models/Department.model");
 const { Employee } = require("../models/Employee.model");
+const { Salary } = require("../models/Salary.model");
 const { User } = require("../models/User.model");
 const { ApiError } = require("../utils/ApiError");
 const { ApiResponse } = require("../utils/ApiResponse");
@@ -159,6 +160,7 @@ const deleteEmployee = asyncHandler(async (req,res)=>{
     }
     const findUser = await User.findByIdAndDelete(findEmployee?.userID);
     console.log(findUser);
+    await Salary.findByIdAndDelete(id);
     await Employee.findByIdAndDelete(id);
 
     res
