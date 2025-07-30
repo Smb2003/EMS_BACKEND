@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require("serverless-http");
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -29,4 +30,4 @@ app.use("/api/v1/users",router);
 app.use(errorHandler)
 
 
-module.exports = app;
+module.exports = serverless(app);
