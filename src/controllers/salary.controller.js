@@ -104,7 +104,7 @@ const getAllSalaries = asyncHandler(async(req,res) => {
     ))
 })
 module.exports = {
-    addSalary,
-    getSalary,
-    getAllSalaries
+  addSalary,
+  getSalary,
+  getAllSalaries
 }
