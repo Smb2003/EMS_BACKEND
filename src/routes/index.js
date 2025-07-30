@@ -20,6 +20,12 @@ router.route("/check").get(verifyJWT,(req,res)=>{
         user: req.user
     })
 });
+router.route("/testing").get((req,res)=>{
+    return res.status(200).json({
+        success: true,
+        result: "Working perfectly"
+    })
+});
 //department routes..
 router.route("/department_add").post(verifyJWT,add_department);
 router.route("/department_get").get(verifyJWT,getDepartments);
