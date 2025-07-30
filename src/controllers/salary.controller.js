@@ -5,41 +5,46 @@ const { ApiError } = require("../utils/ApiError");
 const { ApiResponse } = require("../utils/ApiResponse");
 const asyncHandler = require("../utils/asyncHandler");
 const ObjectId = mongoose.Types.ObjectId;
+import mongoose from 'mongoose';
 
-const addSalary = asyncHandler(async (req,res)=>{
-    const {employeeID,basicSalary,allowance,monthlyDeduction,payDate} = req.body;
-    if([employeeID,basicSalary,allowance,monthlyDeduction,payDate].some(item => (item.trim() == ""))){
-        throw new ApiError(400,"All fields are required.");
-    }
-    const totalSalary = parseInt(basicSalary) + parseInt(allowance) - parseInt(monthlyDeduction);
-    const existingSalary = await Salary.findOne(employeeID);
-    if(existingSalary){
-        await Salary.findOneAndUpdate(employeeID,{
-            basicSalary,
-            allowance,
-            deduction: monthlyDeduction,
-            payDate,
-            netSalary: totalSalary || 0
-        },{
-            new: true
-        })
-    }
-    else{
-        const createSalary = await Salary.create({
-            employeeID,
-            basicSalary,
-            allowance,
-            deduction: monthlyDeduction,
-            payDate,
-            netSalary: totalSalary || 0
-        });
-    }
-    res
-    .status(200)
-    .json(new ApiResponse(
-        200,
-        "Salary is added successfully."
-    ))
+const addSalary = asyncHandler(async (req, res) => {
+  const { employeeID, basicSalary, allowance, monthlyDeduction, payDate } = req.body;
+
+  if ([employeeID, basicSalary, allowance, monthlyDeduction, payDate].some(item => item.trim() === "")) {
+    throw new ApiError(400, "All fields are required.");
+  }
+
+  const totalSalary =
+    parseInt(basicSalary) +
+    parseInt(allowance) -
+    parseInt(monthlyDeduction);
+
+  const existingSalary = await Salary.findOne({ employeeID: new ObjectId(employeeID) });
+
+  if (!existingSalary) {
+    await Salary.create({
+      employeeID,
+      basicSalary,
+      allowance,
+      deduction: monthlyDeduction,
+      payDate,
+      netSalary: totalSalary || 0
+    });
+  } else {
+    await Salary.findOneAndUpdate(
+      { employeeID: new ObjectId(employeeID) },
+      {
+        basicSalary,
+        allowance,
+        deduction: monthlyDeduction,
+        payDate,
+        netSalary: totalSalary || 0
+      },
+      { new: true }
+    );
+  }
+
+  res.status(200).json(new ApiResponse(200, "Salary is added successfully."));
 });
 
 const getSalary = asyncHandler(async(req,res) => {
