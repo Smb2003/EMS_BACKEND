@@ -5,7 +5,6 @@ const { ApiError } = require("../utils/ApiError");
 const { ApiResponse } = require("../utils/ApiResponse");
 const asyncHandler = require("../utils/asyncHandler");
 const ObjectId = mongoose.Types.ObjectId;
-import mongoose from 'mongoose';
 
 const addSalary = asyncHandler(async (req, res) => {
   const { employeeID, basicSalary, allowance, monthlyDeduction, payDate } = req.body;
