@@ -10,8 +10,8 @@ connect_to_database()
 }).catch(err=>{
     console.log(err);
 })
-
-app.listen(process.env.PORT || 3000,()=>{
-    console.log(`Server is listening at port ${process.env.PORT}`);
-});
-
+if (process.env.NODE_ENV !== "production") {
+    app.listen(process.env.PORT || 3000,()=>{
+        console.log(`Server is listening at port ${process.env.PORT}`);
+    });
+}
