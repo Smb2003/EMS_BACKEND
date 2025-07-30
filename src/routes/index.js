@@ -15,7 +15,7 @@ router.route("/refreshToken").post(RefreshAccessToken);
 router.route("/logOut").get(verifyJWT,logOut);
 router.route("/updatePassword").post(verifyJWT,updatePassword);
 router.route("/check").get(verifyJWT,(req,res)=>{
-    res.status(200).json({
+    return res.status(200).json({
         success: true,
         user: req.user
     })
