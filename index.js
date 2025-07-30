@@ -1,7 +1,6 @@
 require('dotenv').config();
 const app = require('./app');
 const { connect_to_database } = require('./database');
-console.log(process.env.PORT);
 
 app.get("/",(req,res)=>{
     return res.json({
@@ -15,8 +14,7 @@ connect_to_database()
 }).catch(err=>{
     console.log(err);
 })
-// if (process.env.NODE_ENV !== "production") {
-//     app.listen(process.env.PORT || 3000,()=>{
-//         console.log(`Server is listening at port ${process.env.PORT}`);
-//     });
-// }
+app.listen(process.env.PORT || 3000,()=>{
+    console.log(`Server is listening at port ${process.env.PORT}`);
+});
+
