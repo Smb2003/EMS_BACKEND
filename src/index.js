@@ -3,7 +3,12 @@ const app = require('./app');
 const { connect_to_database } = require('./database');
 console.log(process.env.PORT);
 
-
+app.get("/",(req,res)=>{
+    return res.json({
+        error: false,
+        result :"Working perfectly."
+    })
+})
 connect_to_database()
 .then(()=>{
     console.log("Connected successfully!")
